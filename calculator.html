@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wow Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(45deg, #f06, #4a90e2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .calculator {
+            background: #1f1b1b;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 15px;
+        }
+
+        .calculator input[type="text"] {
+            grid-column: span 4;
+            height: 60px;
+            border: none;
+            background: #f2f2f2;
+            border-radius: 10px;
+            text-align: right;
+            padding: 10px;
+            font-size: 2rem;
+            color: #333;
+        }
+
+        .calculator button {
+            height: 60px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.5rem;
+            transition: 0.3s;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .calculator button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .operator {
+            background: #f06;
+            color: white;
+        }
+
+        .equal {
+            background: #4034eb;
+            color: white;
+            grid-column: span 2;
+        }
+
+        .clear {
+            background: #ff5656;
+            color: white;
+        }
+
+        .backspace {
+            background: #4034eb;
+            color: white;
+        }
+
+        .number {
+            background: #eee;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1> Calculator</h1>
+        <div class="calculator">
+            <input type="text" id="display" disabled>
+            
+            <button class="clear" onclick="clearDisplay()">C</button>
+            <button class="backspace" onclick="backspace()">←</button>
+            <button class="operator" onclick="appendToDisplay('/')">÷</button>
+            <button class="operator" onclick="appendToDisplay('*')">×</button>
+
+            <button class="number" onclick="appendToDisplay('7')">7</button>
+            <button class="number" onclick="appendToDisplay('8')">8</button>
+            <button class="number" onclick="appendToDisplay('9')">9</button>
+            <button class="operator" onclick="appendToDisplay('-')">−</button>
+
+            <button class="number" onclick="appendToDisplay('4')">4</button>
+            <button class="number" onclick="appendToDisplay('5')">5</button>
+            <button class="number" onclick="appendToDisplay('6')">6</button>
+            <button class="operator" onclick="appendToDisplay('+')">+</button>
+
+            <button class="number" onclick="appendToDisplay('1')">1</button>
+            <button class="number" onclick="appendToDisplay('2')">2</button>
+            <button class="number" onclick="appendToDisplay('3')">3</button>
+            <button class="number" onclick="appendToDisplay('0')">0</button>
+
+            <button class="number" onclick="appendToDisplay('.')">.</button>
+            <button class="equal" onclick="calculate()">=</button>
+        </div>
+    </div>
+
+    <script>
+        function appendToDisplay(value) {
+            document.getElementById('display').value += value;
+        }
+
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+
+        function backspace() {
+            let display = document.getElementById('display').value;
+            document.getElementById('display').value = display.slice(0, -1);
+        }
+
+        function calculate() {
+            let display = document.getElementById('display').value;
+            if (display) {
+                document.getElementById('display').value = eval(display);
+            }
+        }
+    </script>
+
+</body>
+</html>
